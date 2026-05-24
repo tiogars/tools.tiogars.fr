@@ -11,7 +11,7 @@
     - tags
     - pinned as default favorite flag
 - A default JSON seed must be bundled with the application and must
-  contain the repository `tiogars/template-repository`.
+  contain the repository `tiogars/tools.tiogars.fr`.
 - The seeded repository must be proposed as a favorite on first launch.
 - The header must expose a toggle that lets the user show or hide the
   seeded favorite repository from the dashboard without deleting it.

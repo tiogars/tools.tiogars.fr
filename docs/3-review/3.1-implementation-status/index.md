@@ -82,7 +82,7 @@ are met:
 | --------- | ------ |
 | User can manage favourite repository templates from a modal form. | ✅ |
 | User can manage tags and assign them to templates. | ✅ |
-| Default favourite `tiogars/template-repository` is preloaded and can be shown or hidden. | ✅ |
+| Default favourite `tiogars/tools.tiogars.fr` is preloaded and can be shown or hidden. | ✅ |
 | Dashboard displays repository cards, repository count KPI, and last-backup KPI. | ✅ |
 | Import and export actions work with JSON files. | ✅ |
 | Local data persists across browser reloads through IndexedDB. | ✅ |

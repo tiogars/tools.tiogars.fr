@@ -12,7 +12,7 @@ This project is currently in active development. Only the latest version on the
 ## Reporting a Vulnerability
 
 To report a security vulnerability, please open a
-[GitHub Security Advisory](https://github.com/tiogars/template-repository/security/advisories/new)
+[GitHub Security Advisory](https://github.com/tiogars/tools.tiogars.fr/security/advisories/new)
 in this repository.
 
 Please include as much detail as possible:

@@ -31,7 +31,7 @@
 - Define TypeScript models for repository templates, tags, backup
   metadata, and user preferences.
 - Implement IndexedDB repositories and a seed initialization flow.
-- Load the default `tiogars/template-repository` favorite on first run.
+- Load the default `tiogars/tools.tiogars.fr` favorite on first run.
 - Persist theme and seeded-favorite visibility preferences.
 
 ### Phase 2 Deliverables

@@ -7,7 +7,7 @@ marp: true
 backgroundImage: url('./images/tiogars-background.svg')
 ---
 
-# **template-repository** - Template repository to create a boilerplate application
+# **tools.tiogars.fr** - Template repository to create a boilerplate application
 
 <!-- Presenter notes: Introduce yourself and the topic of the presentation.
 Explain that this presentation will cover the template repository and its
@@ -15,12 +15,12 @@ features. -->
 
 ---
 
-## What is template-repository?
+## What is tools.tiogars.fr?
 
-Template-repository is a boilerplate application template that helps you
-quickly set up a new project with a predefined structure and best practices.
+tools.tiogars.fr is a web dashboard that helps you manage favourite GitHub
+repository templates, tags, and local JSON backups.
 
-<!-- Presenter notes: Explain that template-repository is a powerful tool for creating
+<!-- Presenter notes: Explain that tools.tiogars.fr is a powerful tool for creating
 boilerplate applications. It allows you to focus on building features while it takes
 care of the project structure and best practices. Mention that it's
 open-source, which means it's free to use and has a community of contributors.
@@ -31,33 +31,28 @@ for new projects, ensuring consistency and reducing setup time. -->
 
 ## Key Features
 
-- **Predefined project structure**
-- **Best practices integration**
-- **Open-source and community-driven**
-- **Rapid project setup**
+- **Repository template management**
+- **Tag filtering and organization**
+- **Local JSON backup and restore**
+- **Responsive, browser-based dashboard**
+- **Integrated docs and Storybook**
 
-- **Integrates with VS Code, CLI, and web**
-
-<!-- Presenter notes: Highlight the key features of template-repository.
-Emphasize the ease of setting up a new project with a predefined structure,
-the integration of best practices, and the support from the open-source
-community. Mention the various tools available for
-development, including VS Code, CLI, and web interfaces. -->
+<!-- Presenter notes: Highlight the key features of tools.tiogars.fr.
+Focus on template management, tag organization, backup capabilities, and the
+responsive dashboard experience, then mention integrated docs and Storybook. -->
 
 ---
 
 ## Usage
 
-1. **Install template-repository**: `npm install -g template-repository`
-2. **Create a new project**: `template-repository create my-project`
-3. **Navigate to the project**: `cd my-project`
-4. **Start development**: `npm start`
+1. **Open the application**: `https://tools.tiogars.fr`
+2. **Manage templates**: add, edit, and delete repository templates
+3. **Organise with tags**: create and apply tags for filtering
+4. **Backup data**: export and import JSON snapshots
 
-<!-- Presenter notes: Walk through the basic usage of template-repository.
-Start with installing the template-repository CLI using npm. Then, explain
-how to create a new project
-using the CLI. Next, show how to navigate to the project directory. Finally, demonstrate
-how to start development using the provided npm scripts. -->
+<!-- Presenter notes: Walk through the basic usage of tools.tiogars.fr.
+Show how users open the hosted app, manage templates and tags, then use
+JSON export/import for local backups. -->
 
 ---
 
@@ -69,13 +64,9 @@ how to start development using the provided npm scripts. -->
 
 ## Tools
 
-<!-- Presenter notes: Introduce the different tools available for working with
-template-repository. The CLI is a powerful command-line tool for creating and
-managing projects.
-The VS Code extension provides a seamless experience for developing within the editor.
-Finally, the web interface allows you to manage projects online without
-needing to
-install anything. -->
+<!-- Presenter notes: Introduce the supporting tools around tools.tiogars.fr:
+the hosted web app for day-to-day usage, documentation for guidance, and
+Storybook for component-level review. -->
 
 ---
 
@@ -93,5 +84,5 @@ install anything. -->
 ## Learn More
 
 <!-- Presenter notes: TODO add links to documentation, GitHub repository,
-and community resources for template-repository.
+and community resources for tools.tiogars.fr.
 -->

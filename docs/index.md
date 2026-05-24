@@ -1,4 +1,4 @@
-# Template Repository Documentation
+# tools.tiogars.fr Documentation
 
 This documentation defines the baseline specification for a basic
 webapp built from this repository template.

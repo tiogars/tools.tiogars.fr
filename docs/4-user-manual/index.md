@@ -1,6 +1,6 @@
 # 4. User Manual
 
-This section explains how to use the Template Repository webapp.
+This section explains how to use the tools.tiogars.fr webapp.
 
 ## Sections
 

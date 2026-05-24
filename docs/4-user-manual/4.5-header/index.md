@@ -24,7 +24,7 @@ persisted across sessions.
 
 ## Seeded favourite toggle
 
-The seeded favourite toggle shows or hides the default `tiogars/template-repository`
+The seeded favourite toggle shows or hides the default `tiogars/tools.tiogars.fr`
 template on the dashboard without permanently deleting it. This is
 useful when you want to focus on your own templates.
 

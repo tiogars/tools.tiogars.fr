@@ -1,10 +1,10 @@
 [
   {
-    "id": "seed-tiogars-template-repository",
-    "name": "tiogars/template-repository",
-    "url": "https://github.com/tiogars/template-repository",
+    "id": "seed-tiogars-tools-tiogars-fr",
+    "name": "tiogars/tools.tiogars.fr",
+    "url": "https://github.com/tiogars/tools.tiogars.fr",
     "description": "Reference repository template with MkDocs, CI workflows, and delivery documentation.",
-    "templateName": "template-repository",
+    "templateName": "tools.tiogars.fr",
     "templateOwner": "tiogars",
     "createdAt": "2026-01-01T00:00:00.000Z",
     "updatedAt": "2026-04-04T00:00:00.000Z",

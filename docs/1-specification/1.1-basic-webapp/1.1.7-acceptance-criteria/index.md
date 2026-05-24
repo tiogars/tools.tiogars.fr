@@ -2,7 +2,7 @@
 
 - A user can manage favorite repository templates from a modal form.
 - A user can manage tags and assign them to repository templates.
-- The default favorite `tiogars/template-repository` is preloaded and
+- The default favorite `tiogars/tools.tiogars.fr` is preloaded and
   can be shown or hidden from the header.
 - The dashboard displays repository cards, the repository count KPI,
   and the last backup KPI.

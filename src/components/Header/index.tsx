@@ -27,7 +27,7 @@ export function Header({
       <Toolbar sx={{ gap: 2, backdropFilter: 'blur(12px)' }}>
         <AutoAwesomeMotionOutlinedIcon color="primary" />
         <Typography variant="h6" noWrap className="header-title" sx={{ flexGrow: 1 }}>
-          Template Repository Dashboard
+          tools.tiogars.fr Dashboard
         </Typography>
         <Tooltip title="Seeded favorite">
           <Box component="span" sx={{ display: { xs: 'flex', md: 'none' }, alignItems: 'center' }}>

@@ -1,8 +1,8 @@
-site_name: Template Repository
-site_description: A template repository with a MkDocs documentation and GitHub Actions workflows for CI, CD and docs generation.
-site_url: https://template-repository.tiogars.fr/docs/
-repo_url: https://github.com/tiogars/template-repository
-repo_name: tiogars/template-repository
+site_name: tools.tiogars.fr
+site_description: The tools.tiogars.fr webapp, documentation, and delivery workflows.
+site_url: https://tools.tiogars.fr/docs/
+repo_url: https://github.com/tiogars/tools.tiogars.fr
+repo_name: tiogars/tools.tiogars.fr
 
 edit_uri: edit/main/docs/
 
@@ -155,9 +155,9 @@ plugins:
       cover: true
       cover_logo: assets/images/favicon.png
       cover_subtitle: Documentation
-      cover_title: Template Repository
+      cover_title: tools.tiogars.fr
       debug_html: true
-      output_path: fr.tiogars.template-repository.pdf
+      output_path: tools.tiogars.fr.pdf
   - print-site:
       add_to_navigation: false
       print_page_title: 'Print Site'
@@ -173,7 +173,7 @@ plugins:
       enumerate_figures: true
       add_cover_page: true
       cover_page_template: ""
-      path_to_pdf: "fr.tiogars.template-repository.pdf"
+      path_to_pdf: "tools.tiogars.fr.pdf"
       include_css: true
       enabled: true
       exclude: []

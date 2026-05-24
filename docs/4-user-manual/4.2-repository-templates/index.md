@@ -10,7 +10,7 @@ together with descriptive metadata.
    in the bottom-right corner of the screen.
 2. Click **Add repository template**.
 3. Fill in the form fields:
-    - **Name** — the repository name (e.g., `tiogars/template-repository`).
+    - **Name** — the repository name (e.g., `tiogars/tools.tiogars.fr`).
     - **URL** — the full GitHub repository URL.
     - **Description** — a short description of the template.
     - **Creation date** — the date the repository was created.
@@ -48,7 +48,7 @@ Each template card contains a share action:
 ## Default seeded template
 
 On first launch the application pre-loads the
-`tiogars/template-repository` repository as a default seeded template.
+`tiogars/tools.tiogars.fr` repository as a default seeded template.
 This template can be shown or hidden using the toggle in the header
 without being permanently deleted. See [4.5 Header](../4.5-header/index.md)
 for details.
