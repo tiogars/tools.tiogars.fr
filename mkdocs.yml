@@ -157,7 +157,7 @@ plugins:
       cover_subtitle: Documentation
       cover_title: tools.tiogars.fr
       debug_html: true
-      output_path: fr.tiogars.tools.tiogars.fr.pdf
+      output_path: tools.tiogars.fr.pdf
   - print-site:
       add_to_navigation: false
       print_page_title: 'Print Site'
@@ -173,7 +173,7 @@ plugins:
       enumerate_figures: true
       add_cover_page: true
       cover_page_template: ""
-      path_to_pdf: "fr.tiogars.tools.tiogars.fr.pdf"
+      path_to_pdf: "tools.tiogars.fr.pdf"
       include_css: true
       enabled: true
       exclude: []
