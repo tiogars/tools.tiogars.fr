@@ -224,7 +224,7 @@ export function useDashboardController(): DashboardController {
       await persist(nextDataSet);
       downloadJsonFile(
         serializeAppDataSet(nextDataSet),
-        `template-repository-backup-${exportedAt.replaceAll(':', '-').replaceAll('.', '-')}.json`,
+        `tools.tiogars.fr-backup-${exportedAt.replaceAll(':', '-').replaceAll('.', '-')}.json`,
       );
       setFeedback({ message: 'Dataset exported successfully.', severity: 'success' });
     },

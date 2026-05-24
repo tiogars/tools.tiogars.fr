@@ -5,7 +5,7 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    image: ghcr.io/tiogars/template-repository-webapp:latest
+    image: ghcr.io/tiogars/tools.tiogars.fr-webapp:latest
     restart: unless-stopped
 
     # Resource limits — this is a lightweight static-file service.
@@ -53,7 +53,7 @@ services:
   # ── Tailscale sidecar (uncomment to enable) ───────────────────────────────
   # tailscale:
   #   image: tailscale/tailscale:latest
-  #   hostname: template-repository
+  #   hostname: tools.tiogars.fr
   #   environment:
   #     - TS_AUTHKEY=${TS_AUTHKEY}
   #     - TS_STATE_DIR=/var/lib/tailscale

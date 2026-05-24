@@ -41,13 +41,13 @@ higher traffic.
 ### Build the image
 
 ```bash
-docker build -t template-repository-webapp .
+docker build -t tools.tiogars.fr-webapp .
 ```
 
 ### Run the container
 
 ```bash
-docker run -d --name webapp -p 3000:80 template-repository-webapp
+docker run -d --name webapp -p 3000:80 tools.tiogars.fr-webapp
 ```
 
 The app is now available at <http://localhost:3000>.
@@ -155,7 +155,7 @@ services:
 
   tailscale:
     image: tailscale/tailscale:latest
-    hostname: template-repository
+    hostname: tools.tiogars.fr
     environment:
       - TS_AUTHKEY=${TS_AUTHKEY}
       - TS_STATE_DIR=/var/lib/tailscale
@@ -173,7 +173,7 @@ volumes:
 ```
 
 Set `TS_AUTHKEY` in a `.env` file (never commit this file). The machine
-will appear in your Tailscale admin console as `template-repository` and
+will appear in your Tailscale admin console as `tools.tiogars.fr` and
 will be reachable at its Tailscale IP on port `80`.
 
 ---
@@ -204,8 +204,8 @@ To publish the image to GitHub Container Registry so that other hosts
 can pull it without rebuilding:
 
 ```bash
-docker build -t ghcr.io/your-org/template-repository-webapp:latest .
-docker push ghcr.io/your-org/template-repository-webapp:latest
+docker build -t ghcr.io/your-org/tools.tiogars.fr-webapp:latest .
+docker push ghcr.io/your-org/tools.tiogars.fr-webapp:latest
 ```
 
 The `docker-compose.yml` references this registry image via the `image`

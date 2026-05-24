@@ -13,10 +13,10 @@ describe('RepositoryTemplateCard', () => {
       <RepositoryTemplateCard
         template={{
           id: 'template-1',
-          name: 'tiogars/template-repository',
-          url: 'https://github.com/tiogars/template-repository',
+          name: 'tiogars/tools.tiogars.fr',
+          url: 'https://github.com/tiogars/tools.tiogars.fr',
           description: 'Reference repository template scaffold.',
-          templateName: 'template-repository',
+          templateName: 'tools.tiogars.fr',
           templateOwner: 'tiogars',
           createdAt: '2026-01-01T00:00:00.000Z',
           updatedAt: '2026-04-04T00:00:00.000Z',
@@ -31,7 +31,7 @@ describe('RepositoryTemplateCard', () => {
       />,
     );
 
-    expect(screen.getByText('tiogars/template-repository')).toBeInTheDocument();
+    expect(screen.getByText('tiogars/tools.tiogars.fr')).toBeInTheDocument();
     expect(screen.getByText('TypeScript')).toBeInTheDocument();
   });
 
@@ -44,10 +44,10 @@ describe('RepositoryTemplateCard', () => {
       <RepositoryTemplateCard
         template={{
           id: 'template-1',
-          name: 'tiogars/template-repository',
-          url: 'https://github.com/tiogars/template-repository',
+          name: 'tiogars/tools.tiogars.fr',
+          url: 'https://github.com/tiogars/tools.tiogars.fr',
           description: 'Reference repository template scaffold.',
-          templateName: 'template-repository',
+          templateName: 'tools.tiogars.fr',
           templateOwner: 'tiogars',
           createdAt: '2026-01-01T00:00:00.000Z',
           updatedAt: '2026-04-04T00:00:00.000Z',
@@ -78,10 +78,10 @@ describe('RepositoryTemplateCard', () => {
       <RepositoryTemplateCard
         template={{
           id: 'template-1',
-          name: 'tiogars/template-repository',
-          url: 'https://github.com/tiogars/template-repository',
+          name: 'tiogars/tools.tiogars.fr',
+          url: 'https://github.com/tiogars/tools.tiogars.fr',
           description: 'Reference repository template scaffold.',
-          templateName: 'template-repository',
+          templateName: 'tools.tiogars.fr',
           templateOwner: 'tiogars',
           createdAt: '2026-01-01T00:00:00.000Z',
           updatedAt: '2026-04-04T00:00:00.000Z',
@@ -99,7 +99,7 @@ describe('RepositoryTemplateCard', () => {
     fireEvent.click(within(view.container).getByRole('button', { name: 'Share' }));
 
     expect(onShare).toHaveBeenCalledTimes(1);
-    expect(onShare).toHaveBeenCalledWith('https://github.com/tiogars/template-repository', 'tiogars/template-repository');
+    expect(onShare).toHaveBeenCalledWith('https://github.com/tiogars/tools.tiogars.fr', 'tiogars/tools.tiogars.fr');
   });
 
   it('renders a "Use template" link with the correct href', () => {
@@ -111,10 +111,10 @@ describe('RepositoryTemplateCard', () => {
       <RepositoryTemplateCard
         template={{
           id: 'template-1',
-          name: 'tiogars/template-repository',
-          url: 'https://github.com/tiogars/template-repository',
+          name: 'tiogars/tools.tiogars.fr',
+          url: 'https://github.com/tiogars/tools.tiogars.fr',
           description: 'Reference repository template scaffold.',
-          templateName: 'template-repository',
+          templateName: 'tools.tiogars.fr',
           templateOwner: 'tiogars',
           createdAt: '2026-01-01T00:00:00.000Z',
           updatedAt: '2026-04-04T00:00:00.000Z',
@@ -132,7 +132,7 @@ describe('RepositoryTemplateCard', () => {
     const useTemplateLink = within(view.container).getByRole('link', { name: /use template/i });
     expect(useTemplateLink).toHaveAttribute(
       'href',
-      'https://github.com/new?template_name=template-repository&template_owner=tiogars',
+      'https://github.com/new?template_name=tools.tiogars.fr&template_owner=tiogars',
     );
     expect(useTemplateLink).toHaveAttribute('target', '_blank');
     expect(useTemplateLink).toHaveAttribute('rel', 'noopener noreferrer');

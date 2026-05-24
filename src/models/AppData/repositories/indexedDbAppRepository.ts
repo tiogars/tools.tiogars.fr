@@ -3,7 +3,7 @@ import { openDB } from 'idb';
 import type { AppRepository } from './appRepository';
 import type { AppDataSet } from '../types/domain';
 
-const DATABASE_NAME = 'template-repository-webapp';
+const DATABASE_NAME = 'tools.tiogars.fr-webapp';
 const STORE_NAME = 'app-state';
 const DATASET_KEY = 'dataset';
 

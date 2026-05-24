@@ -7,7 +7,7 @@ marp: true
 backgroundImage: url('./images/tiogars-background.svg')
 ---
 
-# **template-repository** - Template repository to create a boilerplate application
+# **tools.tiogars.fr** - Template repository to create a boilerplate application
 
 <!-- Presenter notes: Introduce yourself and the topic of the presentation.
 Explain that this presentation will cover the template repository and its
@@ -15,12 +15,12 @@ features. -->
 
 ---
 
-## What is template-repository?
+## What is tools.tiogars.fr?
 
-Template-repository is a boilerplate application template that helps you
+tools.tiogars.fr is a boilerplate application template that helps you
 quickly set up a new project with a predefined structure and best practices.
 
-<!-- Presenter notes: Explain that template-repository is a powerful tool for creating
+<!-- Presenter notes: Explain that tools.tiogars.fr is a powerful tool for creating
 boilerplate applications. It allows you to focus on building features while it takes
 care of the project structure and best practices. Mention that it's
 open-source, which means it's free to use and has a community of contributors.
@@ -38,7 +38,7 @@ for new projects, ensuring consistency and reducing setup time. -->
 
 - **Integrates with VS Code, CLI, and web**
 
-<!-- Presenter notes: Highlight the key features of template-repository.
+<!-- Presenter notes: Highlight the key features of tools.tiogars.fr.
 Emphasize the ease of setting up a new project with a predefined structure,
 the integration of best practices, and the support from the open-source
 community. Mention the various tools available for
@@ -48,13 +48,13 @@ development, including VS Code, CLI, and web interfaces. -->
 
 ## Usage
 
-1. **Install template-repository**: `npm install -g template-repository`
-2. **Create a new project**: `template-repository create my-project`
+1. **Install tools.tiogars.fr**: `npm install -g tools.tiogars.fr`
+2. **Create a new project**: `tools.tiogars.fr create my-project`
 3. **Navigate to the project**: `cd my-project`
 4. **Start development**: `npm start`
 
-<!-- Presenter notes: Walk through the basic usage of template-repository.
-Start with installing the template-repository CLI using npm. Then, explain
+<!-- Presenter notes: Walk through the basic usage of tools.tiogars.fr.
+Start with installing the tools.tiogars.fr CLI using npm. Then, explain
 how to create a new project
 using the CLI. Next, show how to navigate to the project directory. Finally, demonstrate
 how to start development using the provided npm scripts. -->
@@ -70,7 +70,7 @@ how to start development using the provided npm scripts. -->
 ## Tools
 
 <!-- Presenter notes: Introduce the different tools available for working with
-template-repository. The CLI is a powerful command-line tool for creating and
+tools.tiogars.fr. The CLI is a powerful command-line tool for creating and
 managing projects.
 The VS Code extension provides a seamless experience for developing within the editor.
 Finally, the web interface allows you to manage projects online without
@@ -93,5 +93,5 @@ install anything. -->
 ## Learn More
 
 <!-- Presenter notes: TODO add links to documentation, GitHub repository,
-and community resources for template-repository.
+and community resources for tools.tiogars.fr.
 -->

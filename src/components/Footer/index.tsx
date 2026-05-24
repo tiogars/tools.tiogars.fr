@@ -21,13 +21,13 @@ export function Footer() {
             Powered by React, Vite, TypeScript, and Material UI
           </Typography>
           <Stack direction="row" spacing={2}>
-            <Link className="footer-links" href="https://github.com/tiogars/template-repository">
+            <Link className="footer-links" href="https://github.com/tiogars/tools.tiogars.fr">
               <GitHubIcon fontSize="small" sx={{ mr: 0.5, verticalAlign: 'middle' }} />
               Repository
             </Link>
             <Link
               className="footer-links"
-              href="https://github.com/tiogars/template-repository/issues"
+              href="https://github.com/tiogars/tools.tiogars.fr/issues"
             >
               <BugReportOutlinedIcon
                 fontSize="small"

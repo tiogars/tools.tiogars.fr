@@ -1,6 +1,6 @@
-# template-repository
+# tools.tiogars.fr
 
-![Template Repository logo](assets/images/favicon.png)
+![tools.tiogars.fr logo](assets/images/favicon.png)
 
 A GitHub repository template that ships a React webapp, a MkDocs documentation
 site, and a set of GitHub Actions workflows for CI, CD, and documentation
@@ -8,7 +8,7 @@ generation.
 
 ## Description
 
-**template-repository** is a full-stack boilerplate that lets you bootstrap new
+**tools.tiogars.fr** is a full-stack boilerplate that lets you bootstrap new
 projects with a ready-made React dashboard, a structured MkDocs documentation
 site, and automated GitHub Actions pipelines. The included webapp is a
 responsive browser-based dashboard for managing favourite GitHub repository
@@ -51,8 +51,8 @@ is required.
 
 ```bash
 # Clone the repository
-git clone https://github.com/tiogars/template-repository.git
-cd template-repository
+git clone https://github.com/tiogars/tools.tiogars.fr.git
+cd tools.tiogars.fr
 
 # Install dependencies
 pnpm install
@@ -101,7 +101,7 @@ pnpm dev
 ## Project Structure
 
 ```text
-template-repository/
+tools.tiogars.fr/
 ├── assets/                         # Static project assets (favicon, screenshots)
 ├── docs/                           # MkDocs documentation source files
 │   ├── 0-overview/                 # Project overview and README guide
@@ -197,7 +197,7 @@ All application data is stored exclusively in the browser using
 for data persistence.
 
 ```text
-IndexedDB database: "template-repository-webapp"
+IndexedDB database: "tools.tiogars.fr-webapp"
 └── Object store: "app-state"
     └── Key: "dataset"
         └── Value: AppDataSet (single JSON blob)
@@ -227,11 +227,11 @@ example of the full backup format:
 {
   "templates": [
     {
-      "id": "seed-tiogars-template-repository",
-      "name": "tiogars/template-repository",
-      "url": "https://github.com/tiogars/template-repository",
+      "id": "seed-tiogars-tools-tiogars-fr",
+      "name": "tiogars/tools.tiogars.fr",
+      "url": "https://github.com/tiogars/tools.tiogars.fr",
       "description": "Template with MkDocs, CI workflows, and delivery docs.",
-      "templateName": "template-repository",
+      "templateName": "tools.tiogars.fr",
       "templateOwner": "tiogars",
       "createdAt": "2026-01-01T00:00:00.000Z",
       "updatedAt": "2026-04-04T00:00:00.000Z",
