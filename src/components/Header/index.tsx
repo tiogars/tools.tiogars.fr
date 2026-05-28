@@ -2,6 +2,7 @@ import AutoAwesomeMotionOutlinedIcon from '@mui/icons-material/AutoAwesomeMotion
 import DescriptionOutlinedIcon from '@mui/icons-material/DescriptionOutlined';
 import DarkModeOutlinedIcon from '@mui/icons-material/DarkModeOutlined';
 import LightModeOutlinedIcon from '@mui/icons-material/LightModeOutlined';
+import MenuOutlinedIcon from '@mui/icons-material/MenuOutlined';
 import {
   AppBar,
   Box,
@@ -19,12 +20,21 @@ import type { HeaderProps } from './Header.types';
 export function Header({
   themeMode,
   showSeededFavorite,
+  onToggleNavigation,
   onToggleTheme,
   onToggleSeededFavorite,
 }: Readonly<HeaderProps>) {
   return (
     <AppBar position="sticky" color="transparent" elevation={0}>
       <Toolbar sx={{ gap: 2, backdropFilter: 'blur(12px)' }}>
+        <IconButton
+          aria-label="Toggle navigation menu"
+          color="inherit"
+          onClick={onToggleNavigation}
+          sx={{ display: { xs: 'inline-flex', md: 'none' } }}
+        >
+          <MenuOutlinedIcon />
+        </IconButton>
         <AutoAwesomeMotionOutlinedIcon color="primary" />
         <Typography variant="h6" noWrap className="header-title" sx={{ flexGrow: 1 }}>
           tools.tiogars.fr Dashboard

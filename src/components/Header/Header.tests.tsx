@@ -13,6 +13,7 @@ describe('Header', () => {
       <Header
         themeMode="light"
         showSeededFavorite={true}
+        onToggleNavigation={() => undefined}
         onToggleTheme={handleToggleTheme}
         onToggleSeededFavorite={() => undefined}
       />,
@@ -30,6 +31,7 @@ describe('Header', () => {
       <Header
         themeMode="light"
         showSeededFavorite={true}
+        onToggleNavigation={() => undefined}
         onToggleTheme={() => undefined}
         onToggleSeededFavorite={handleToggleSeededFavorite}
       />,
@@ -38,5 +40,23 @@ describe('Header', () => {
     fireEvent.click(screen.getByLabelText('Toggle seeded favorite'));
 
     expect(handleToggleSeededFavorite).toHaveBeenCalledTimes(1);
+  });
+
+  it('calls the navigation toggle handler', () => {
+    const handleToggleNavigation = vi.fn();
+
+    render(
+      <Header
+        themeMode="light"
+        showSeededFavorite={true}
+        onToggleNavigation={handleToggleNavigation}
+        onToggleTheme={() => undefined}
+        onToggleSeededFavorite={() => undefined}
+      />,
+    );
+
+    fireEvent.click(screen.getByLabelText('Toggle navigation menu'));
+
+    expect(handleToggleNavigation).toHaveBeenCalledTimes(1);
   });
 });

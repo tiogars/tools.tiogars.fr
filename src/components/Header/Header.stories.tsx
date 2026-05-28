@@ -8,6 +8,7 @@ const meta = {
   args: {
     themeMode: 'light',
     showSeededFavorite: true,
+    onToggleNavigation: () => undefined,
     onToggleTheme: () => undefined,
     onToggleSeededFavorite: () => undefined,
   },

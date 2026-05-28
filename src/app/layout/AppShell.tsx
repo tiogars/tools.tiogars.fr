@@ -1,5 +1,5 @@
-import type { ChangeEvent } from 'react';
-import { useRef, useState } from 'react';
+import type { ChangeEvent, ReactNode } from 'react';
+import { useMemo, useRef, useState } from 'react';
 import AddBoxOutlinedIcon from '@mui/icons-material/AddBoxOutlined';
 import DownloadOutlinedIcon from '@mui/icons-material/DownloadOutlined';
 import LabelOutlinedIcon from '@mui/icons-material/LabelOutlined';
@@ -8,6 +8,7 @@ import {
   Alert,
   Box,
   Button,
+  Chip,
   CircularProgress,
   Container,
   Dialog,
@@ -15,13 +16,22 @@ import {
   DialogContent,
   DialogContentText,
   DialogTitle,
+  Drawer,
+  FormControlLabel,
+  Grid,
   Snackbar,
   Stack,
+  Switch,
+  Typography,
 } from '@mui/material';
+import { SimpleTreeView } from '@mui/x-tree-view/SimpleTreeView';
+import { TreeItem } from '@mui/x-tree-view/TreeItem';
+import { Navigate, Route, Routes, useLocation, useNavigate } from 'react-router-dom';
 
 import { FloatingActions } from '../../components/FloatingActions';
 import { Footer } from '../../components/Footer';
 import { Header } from '../../components/Header';
+import { RepositoryTemplateCard } from '../../components/RepositoryTemplateCard';
 import { RepositoryTemplateDialog } from '../../components/RepositoryTemplateDialog';
 import { TagDialog } from '../../components/TagDialog';
 import { DashboardPage } from '../../features/dashboard';
@@ -32,10 +42,33 @@ interface AppShellProps {
   controller: DashboardController;
 }
 
+interface NavigationItem {
+  id: string;
+  label: string;
+  path: string;
+}
+
+const DRAWER_WIDTH = 280;
+const navigationItems: NavigationItem[] = [
+  { id: 'dashboard', label: 'Dashboard', path: '/dashboard' },
+  { id: 'repository-templates', label: 'Repository templates', path: '/repository-templates' },
+  { id: 'tags', label: 'Tags', path: '/tags' },
+  { id: 'backup', label: 'Backup', path: '/backup' },
+  { id: 'preferences', label: 'Preferences', path: '/preferences' },
+];
+
 export function AppShell({ controller }: Readonly<AppShellProps>) {
   const importInputRef = useRef<HTMLInputElement | null>(null);
+  const location = useLocation();
+  const navigate = useNavigate();
   const [deleteTarget, setDeleteTarget] = useState<RepositoryTemplate | null>(null);
   const [pendingImportFile, setPendingImportFile] = useState<File | null>(null);
+  const [mobileNavigationOpen, setMobileNavigationOpen] = useState(false);
+
+  const selectedNavigationItem = useMemo(
+    () => navigationItems.find((item) => item.path === location.pathname)?.id ?? null,
+    [location.pathname],
+  );
 
   function handleDeleteTemplate(template: RepositoryTemplate) {
     setDeleteTarget(template);
@@ -60,6 +93,194 @@ export function AppShell({ controller }: Readonly<AppShellProps>) {
     setPendingImportFile(null);
   }
 
+  function handleNavigation(itemId: string) {
+    const target = navigationItems.find((item) => item.id === itemId);
+    if (!target) return;
+    navigate(target.path);
+    setMobileNavigationOpen(false);
+  }
+
+  function renderDashboardContent() {
+    return (
+      <Stack spacing={3}>
+        {controller.showBackupAlert ? (
+          <Alert severity="warning">
+            JSON export has not been executed recently. Use the export
+            action to refresh your local backup.
+          </Alert>
+        ) : null}
+        <DashboardPage
+          templates={controller.visibleTemplates}
+          repositoryCount={controller.visibleTemplates.length}
+          lastBackupAt={controller.lastBackupAt}
+          tags={controller.tags}
+          selectedTagIds={controller.selectedTagIds}
+          onEditTemplate={controller.openTemplateEditor}
+          onDeleteTemplate={handleDeleteTemplate}
+          onShareTemplate={controller.shareRepositoryTemplate}
+          onToggleTagFilter={controller.toggleTagFilter}
+          onClearTagFilter={controller.clearTagFilter}
+        />
+      </Stack>
+    );
+  }
+
+  function renderRepositoryTemplatesPage() {
+    return (
+      <Stack spacing={3}>
+        <Typography variant="h5">Repository templates</Typography>
+        {controller.visibleTemplates.length === 0 ? (
+          <Typography color="text.secondary">
+            No repository template is currently visible.
+          </Typography>
+        ) : (
+          <Grid container spacing={2}>
+            {controller.visibleTemplates.map((template) => (
+              <Grid key={template.id} size={{ xs: 12, md: 6, xl: 4 }}>
+                <RepositoryTemplateCard
+                  template={template}
+                  tags={controller.tags}
+                  onEdit={controller.openTemplateEditor}
+                  onDelete={handleDeleteTemplate}
+                  onShare={controller.shareRepositoryTemplate}
+                />
+              </Grid>
+            ))}
+          </Grid>
+        )}
+      </Stack>
+    );
+  }
+
+  function renderTagsPage() {
+    return (
+      <Stack spacing={3}>
+        <Typography variant="h5">Tags</Typography>
+        {controller.tags.length > 0 ? (
+          <Stack direction="row" spacing={1} flexWrap="wrap" useFlexGap>
+            {controller.tags.map((tag) => (
+              <Chip
+                key={tag.id}
+                label={tag.label}
+                sx={{ bgcolor: tag.color, color: 'common.white' }}
+              />
+            ))}
+          </Stack>
+        ) : (
+          <Typography color="text.secondary">No tags are currently configured.</Typography>
+        )}
+        <Button variant="contained" onClick={controller.openTagDialog}>
+          Manage tags
+        </Button>
+      </Stack>
+    );
+  }
+
+  function renderBackupPage() {
+    return (
+      <Stack spacing={2}>
+        <Typography variant="h5">Backup</Typography>
+        <Typography color="text.secondary">
+          Last backup:{' '}
+          {controller.lastBackupAt ? (
+            <Box component="time" dateTime={controller.lastBackupAt}>
+              {new Date(controller.lastBackupAt).toLocaleString()}
+            </Box>
+          ) : (
+            'Never'
+          )}
+        </Typography>
+        <Stack direction={{ xs: 'column', sm: 'row' }} spacing={1}>
+          <Button variant="outlined" onClick={() => importInputRef.current?.click()}>
+            Import JSON
+          </Button>
+          <Button
+            variant="contained"
+            onClick={async () => {
+              await controller.exportDataSet();
+            }}
+          >
+            Export JSON
+          </Button>
+        </Stack>
+      </Stack>
+    );
+  }
+
+  function renderPreferencesPage() {
+    return (
+      <Stack spacing={2}>
+        <Typography variant="h5">Preferences</Typography>
+        <FormControlLabel
+          control={<Switch checked={controller.themeMode === 'dark'} onChange={controller.toggleThemeMode} />}
+          label="Dark theme"
+        />
+        <FormControlLabel
+          control={
+            <Switch
+              checked={controller.showSeededFavorite}
+              onChange={controller.toggleSeededFavoriteVisibility}
+            />
+          }
+          label="Show seeded favorite"
+        />
+      </Stack>
+    );
+  }
+
+  function renderNotFoundPage() {
+    return (
+      <Stack spacing={2}>
+        <Typography variant="h5">Page not found</Typography>
+        <Typography color="text.secondary">
+          The requested page does not exist.
+        </Typography>
+        <Button variant="outlined" onClick={() => navigate('/dashboard')}>
+          Back to dashboard
+        </Button>
+      </Stack>
+    );
+  }
+
+  function renderNavigationTree() {
+    return (
+      <Box role="navigation" aria-label="Main navigation" sx={{ p: 2 }}>
+        <Typography variant="subtitle2" color="text.secondary" sx={{ mb: 1 }}>
+          Navigation
+        </Typography>
+        <SimpleTreeView
+          selectedItems={selectedNavigationItem}
+          expandedItems={['workspace']}
+          onItemClick={(_, itemId) => {
+            if (typeof itemId === 'string') {
+              handleNavigation(itemId);
+            }
+          }}
+        >
+          <TreeItem itemId="workspace" label="Workspace">
+            {navigationItems.map((item) => (
+              <TreeItem key={item.id} itemId={item.id} label={item.label} />
+            ))}
+          </TreeItem>
+        </SimpleTreeView>
+      </Box>
+    );
+  }
+
+  function renderRoutes(): ReactNode {
+    return (
+      <Routes>
+        <Route path="/" element={<Navigate to="/dashboard" replace />} />
+        <Route path="/dashboard" element={renderDashboardContent()} />
+        <Route path="/repository-templates" element={renderRepositoryTemplatesPage()} />
+        <Route path="/tags" element={renderTagsPage()} />
+        <Route path="/backup" element={renderBackupPage()} />
+        <Route path="/preferences" element={renderPreferencesPage()} />
+        <Route path="*" element={renderNotFoundPage()} />
+      </Routes>
+    );
+  }
+
   if (controller.isLoading) {
     return (
       <Box
@@ -80,31 +301,36 @@ export function AppShell({ controller }: Readonly<AppShellProps>) {
       <Header
         themeMode={controller.themeMode}
         showSeededFavorite={controller.showSeededFavorite}
+        onToggleNavigation={() => setMobileNavigationOpen((open) => !open)}
         onToggleTheme={controller.toggleThemeMode}
         onToggleSeededFavorite={controller.toggleSeededFavoriteVisibility}
       />
-      <Container component="main" sx={{ flex: 1, py: 4 }}>
-        <Stack spacing={3}>
-          {controller.showBackupAlert ? (
-            <Alert severity="warning">
-              JSON export has not been executed recently. Use the export
-              action to refresh your local backup.
-            </Alert>
-          ) : null}
-          <DashboardPage
-            templates={controller.visibleTemplates}
-            repositoryCount={controller.visibleTemplates.length}
-            lastBackupAt={controller.lastBackupAt}
-            tags={controller.tags}
-            selectedTagIds={controller.selectedTagIds}
-            onEditTemplate={controller.openTemplateEditor}
-            onDeleteTemplate={handleDeleteTemplate}
-            onShareTemplate={(url, title) => { void controller.shareRepositoryTemplate(url, title); }}
-            onToggleTagFilter={controller.toggleTagFilter}
-            onClearTagFilter={controller.clearTagFilter}
-          />
-        </Stack>
-      </Container>
+      <Box sx={{ flex: 1, display: 'flex' }}>
+        <Drawer
+          variant="temporary"
+          open={mobileNavigationOpen}
+          onClose={() => setMobileNavigationOpen(false)}
+          ModalProps={{ keepMounted: true }}
+          sx={{ display: { xs: 'block', md: 'none' } }}
+        >
+          <Box sx={{ width: DRAWER_WIDTH }}>{renderNavigationTree()}</Box>
+        </Drawer>
+        <Drawer
+          variant="permanent"
+          open
+          sx={{
+            display: { xs: 'none', md: 'block' },
+            '& .MuiDrawer-paper': { width: DRAWER_WIDTH, boxSizing: 'border-box' },
+          }}
+        >
+          {renderNavigationTree()}
+        </Drawer>
+        <Box component="main" sx={{ flex: 1, minWidth: 0 }}>
+          <Container sx={{ py: 4 }}>
+            {renderRoutes()}
+          </Container>
+        </Box>
+      </Box>
       <Footer />
       <FloatingActions
         actions={[
