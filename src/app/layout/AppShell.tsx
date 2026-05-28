@@ -23,6 +23,8 @@ import {
   Stack,
   Switch,
   Typography,
+  useMediaQuery,
+  useTheme,
 } from '@mui/material';
 import { SimpleTreeView } from '@mui/x-tree-view/SimpleTreeView';
 import { TreeItem } from '@mui/x-tree-view/TreeItem';
@@ -61,9 +63,12 @@ export function AppShell({ controller }: Readonly<AppShellProps>) {
   const importInputRef = useRef<HTMLInputElement | null>(null);
   const location = useLocation();
   const navigate = useNavigate();
+  const theme = useTheme();
+  const isDesktop = useMediaQuery(theme.breakpoints.up('md'));
   const [deleteTarget, setDeleteTarget] = useState<RepositoryTemplate | null>(null);
   const [pendingImportFile, setPendingImportFile] = useState<File | null>(null);
   const [mobileNavigationOpen, setMobileNavigationOpen] = useState(false);
+  const [desktopNavigationOpen, setDesktopNavigationOpen] = useState(true);
 
   const selectedNavigationItem = useMemo(
     () => navigationItems.find((item) => item.path === location.pathname)?.id ?? null,
@@ -301,7 +306,13 @@ export function AppShell({ controller }: Readonly<AppShellProps>) {
       <Header
         themeMode={controller.themeMode}
         showSeededFavorite={controller.showSeededFavorite}
-        onToggleNavigation={() => setMobileNavigationOpen((open) => !open)}
+        onToggleNavigation={() => {
+          if (isDesktop) {
+            setDesktopNavigationOpen((open) => !open);
+          } else {
+            setMobileNavigationOpen((open) => !open);
+          }
+        }}
         onToggleTheme={controller.toggleThemeMode}
         onToggleSeededFavorite={controller.toggleSeededFavoriteVisibility}
       />
@@ -319,7 +330,7 @@ export function AppShell({ controller }: Readonly<AppShellProps>) {
           variant="permanent"
           open
           sx={{
-            display: { xs: 'none', md: 'block' },
+            display: desktopNavigationOpen ? { xs: 'none', md: 'block' } : 'none',
             '& .MuiDrawer-paper': { width: DRAWER_WIDTH, boxSizing: 'border-box' },
           }}
         >
