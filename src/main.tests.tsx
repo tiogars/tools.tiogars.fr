@@ -35,4 +35,12 @@ describe('main', () => {
 
     expect(await screen.findByText('/backup')).toBeInTheDocument();
   });
+
+  it('loads the current route from the pathname when hash is missing', async () => {
+    window.history.replaceState({}, '', '/dashboard');
+
+    await import('./main');
+
+    expect(await screen.findByText('/dashboard')).toBeInTheDocument();
+  });
 });
