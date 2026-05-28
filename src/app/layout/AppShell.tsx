@@ -66,9 +66,7 @@ export function AppShell({ controller }: Readonly<AppShellProps>) {
   const [mobileNavigationOpen, setMobileNavigationOpen] = useState(false);
 
   const selectedNavigationItem = useMemo(
-    () =>
-      navigationItems.find((item) => item.path === location.pathname)?.id ??
-      (location.pathname === '/' ? 'dashboard' : null),
+    () => navigationItems.find((item) => item.path === location.pathname)?.id ?? null,
     [location.pathname],
   );
 
@@ -119,7 +117,7 @@ export function AppShell({ controller }: Readonly<AppShellProps>) {
           selectedTagIds={controller.selectedTagIds}
           onEditTemplate={controller.openTemplateEditor}
           onDeleteTemplate={handleDeleteTemplate}
-          onShareTemplate={(url, title) => { void controller.shareRepositoryTemplate(url, title); }}
+          onShareTemplate={controller.shareRepositoryTemplate}
           onToggleTagFilter={controller.toggleTagFilter}
           onClearTagFilter={controller.clearTagFilter}
         />
@@ -144,7 +142,7 @@ export function AppShell({ controller }: Readonly<AppShellProps>) {
                   tags={controller.tags}
                   onEdit={controller.openTemplateEditor}
                   onDelete={handleDeleteTemplate}
-                  onShare={(url, title) => { void controller.shareRepositoryTemplate(url, title); }}
+                  onShare={controller.shareRepositoryTemplate}
                 />
               </Grid>
             ))}
@@ -183,7 +181,14 @@ export function AppShell({ controller }: Readonly<AppShellProps>) {
       <Stack spacing={2}>
         <Typography variant="h5">Backup</Typography>
         <Typography color="text.secondary">
-          Last backup: {controller.lastBackupAt ? new Date(controller.lastBackupAt).toLocaleString() : 'Never'}
+          Last backup:{' '}
+          {controller.lastBackupAt ? (
+            <Box component="time" dateTime={controller.lastBackupAt}>
+              {new Date(controller.lastBackupAt).toLocaleString()}
+            </Box>
+          ) : (
+            'Never'
+          )}
         </Typography>
         <Stack direction={{ xs: 'column', sm: 'row' }} spacing={1}>
           <Button variant="outlined" onClick={() => importInputRef.current?.click()}>
@@ -191,8 +196,8 @@ export function AppShell({ controller }: Readonly<AppShellProps>) {
           </Button>
           <Button
             variant="contained"
-            onClick={() => {
-              void controller.exportDataSet();
+            onClick={async () => {
+              await controller.exportDataSet();
             }}
           >
             Export JSON
@@ -262,7 +267,7 @@ export function AppShell({ controller }: Readonly<AppShellProps>) {
     );
   }
 
-  function renderContentRoutes(): ReactNode {
+  function renderRoutes(): ReactNode {
     return (
       <Routes>
         <Route path="/" element={<Navigate to="/dashboard" replace />} />
@@ -322,7 +327,7 @@ export function AppShell({ controller }: Readonly<AppShellProps>) {
         </Drawer>
         <Box component="main" sx={{ flex: 1, minWidth: 0 }}>
           <Container sx={{ py: 4 }}>
-            {renderContentRoutes()}
+            {renderRoutes()}
           </Container>
         </Box>
       </Box>
