@@ -23,6 +23,8 @@ import {
   Stack,
   Switch,
   Typography,
+  useMediaQuery,
+  useTheme,
 } from '@mui/material';
 import { SimpleTreeView } from '@mui/x-tree-view/SimpleTreeView';
 import { TreeItem } from '@mui/x-tree-view/TreeItem';
@@ -61,6 +63,8 @@ export function AppShell({ controller }: Readonly<AppShellProps>) {
   const importInputRef = useRef<HTMLInputElement | null>(null);
   const location = useLocation();
   const navigate = useNavigate();
+  const theme = useTheme();
+  const isDesktop = useMediaQuery(theme.breakpoints.up('md'));
   const [deleteTarget, setDeleteTarget] = useState<RepositoryTemplate | null>(null);
   const [pendingImportFile, setPendingImportFile] = useState<File | null>(null);
   const [mobileNavigationOpen, setMobileNavigationOpen] = useState(false);
@@ -303,8 +307,11 @@ export function AppShell({ controller }: Readonly<AppShellProps>) {
         themeMode={controller.themeMode}
         showSeededFavorite={controller.showSeededFavorite}
         onToggleNavigation={() => {
-          setMobileNavigationOpen((open) => !open);
-          setDesktopNavigationOpen((open) => !open);
+          if (isDesktop) {
+            setDesktopNavigationOpen((open) => !open);
+          } else {
+            setMobileNavigationOpen((open) => !open);
+          }
         }}
         onToggleTheme={controller.toggleThemeMode}
         onToggleSeededFavorite={controller.toggleSeededFavoriteVisibility}
