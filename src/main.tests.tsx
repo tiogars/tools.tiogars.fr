@@ -8,7 +8,7 @@ vi.mock('./app/App', async () => {
     App: function App() {
       const location = useLocation();
 
-      return <div>{location.pathname}</div>;
+      return <div>{`${location.pathname}${location.search}`}</div>;
     },
   };
 });
@@ -34,5 +34,13 @@ describe('main', () => {
     await import('./main');
 
     expect(await screen.findByText('/backup')).toBeInTheDocument();
+  });
+
+  it('loads the current route from the pathname when hash is missing', async () => {
+    window.history.replaceState({}, '', '/dashboard?from=refresh');
+
+    await import('./main');
+
+    expect(await screen.findByText('/dashboard?from=refresh')).toBeInTheDocument();
   });
 });

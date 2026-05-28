@@ -10,6 +10,14 @@ if (!rootElement) {
   throw new Error('Root element was not found.');
 }
 
+if (!window.location.hash && window.location.pathname !== '/') {
+  window.history.replaceState(
+    window.history.state,
+    '',
+    `/#${window.location.pathname}${window.location.search}`,
+  );
+}
+
 ReactDOM.createRoot(rootElement).render(
   <React.StrictMode>
     <HashRouter>
