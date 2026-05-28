@@ -330,7 +330,7 @@ export function AppShell({ controller }: Readonly<AppShellProps>) {
           variant="permanent"
           open
           sx={{
-            display: { xs: 'none', md: desktopNavigationOpen ? 'block' : 'none' },
+            display: desktopNavigationOpen ? { xs: 'none', md: 'block' } : 'none',
             '& .MuiDrawer-paper': { width: DRAWER_WIDTH, boxSizing: 'border-box' },
           }}
         >
