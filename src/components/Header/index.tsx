@@ -31,7 +31,6 @@ export function Header({
           aria-label="Toggle navigation menu"
           color="inherit"
           onClick={onToggleNavigation}
-          sx={{ display: { xs: 'inline-flex', md: 'none' } }}
         >
           <MenuOutlinedIcon />
         </IconButton>

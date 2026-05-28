@@ -64,6 +64,7 @@ export function AppShell({ controller }: Readonly<AppShellProps>) {
   const [deleteTarget, setDeleteTarget] = useState<RepositoryTemplate | null>(null);
   const [pendingImportFile, setPendingImportFile] = useState<File | null>(null);
   const [mobileNavigationOpen, setMobileNavigationOpen] = useState(false);
+  const [desktopNavigationOpen, setDesktopNavigationOpen] = useState(true);
 
   const selectedNavigationItem = useMemo(
     () => navigationItems.find((item) => item.path === location.pathname)?.id ?? null,
@@ -301,7 +302,10 @@ export function AppShell({ controller }: Readonly<AppShellProps>) {
       <Header
         themeMode={controller.themeMode}
         showSeededFavorite={controller.showSeededFavorite}
-        onToggleNavigation={() => setMobileNavigationOpen((open) => !open)}
+        onToggleNavigation={() => {
+          setMobileNavigationOpen((open) => !open);
+          setDesktopNavigationOpen((open) => !open);
+        }}
         onToggleTheme={controller.toggleThemeMode}
         onToggleSeededFavorite={controller.toggleSeededFavoriteVisibility}
       />
@@ -319,7 +323,7 @@ export function AppShell({ controller }: Readonly<AppShellProps>) {
           variant="permanent"
           open
           sx={{
-            display: { xs: 'none', md: 'block' },
+            display: { xs: 'none', md: desktopNavigationOpen ? 'block' : 'none' },
             '& .MuiDrawer-paper': { width: DRAWER_WIDTH, boxSizing: 'border-box' },
           }}
         >
