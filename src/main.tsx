@@ -11,7 +11,11 @@ if (!rootElement) {
 }
 
 if (!window.location.hash && window.location.pathname !== '/') {
-  window.location.hash = `${window.location.pathname}${window.location.search}`;
+  window.history.replaceState(
+    window.history.state,
+    '',
+    `/#${window.location.pathname}${window.location.search}`,
+  );
 }
 
 ReactDOM.createRoot(rootElement).render(
